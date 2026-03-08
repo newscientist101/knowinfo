@@ -78,7 +78,3 @@ info-kiosk/
         └── vendor/mv/
             └── MVMF.js     # MVMF Core library
 ```
-
-## License
-
-Apache-2.0
