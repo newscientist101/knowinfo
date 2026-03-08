@@ -1,0 +1,62 @@
+[
+  {
+    "id": 1,
+    "title": "Open Metaverse Hackathon",
+    "date": "2026-03-07T10:00:00-08:00",
+    "endDate": "2026-03-08T18:00:00-08:00",
+    "location": "Frontier Tower, San Francisco",
+    "description": "Build the future before Big Tech does. 27-hour hackathon across Tools, Places, and AI tracks.",
+    "category": "hackathon",
+    "url": "https://omb.metaverse-standards.org/en/hackathon"
+  },
+  {
+    "id": 2,
+    "title": "Spatial Fabric Workshop",
+    "date": "2026-03-15T14:00:00-08:00",
+    "endDate": "2026-03-15T16:00:00-08:00",
+    "location": "Virtual — RP1 Browser",
+    "description": "Hands-on workshop covering fabric architecture, campus attachment, and scene assembly.",
+    "category": "workshop",
+    "url": ""
+  },
+  {
+    "id": 3,
+    "title": "3D Model Optimization Clinic",
+    "date": "2026-03-22T11:00:00-08:00",
+    "endDate": "2026-03-22T12:30:00-08:00",
+    "location": "Virtual — Discord",
+    "description": "Learn best practices for GLB models: triangle budgets, texture limits, and streaming-friendly design.",
+    "category": "workshop",
+    "url": ""
+  },
+  {
+    "id": 4,
+    "title": "MSF Developer Meetup",
+    "date": "2026-04-05T18:00:00-07:00",
+    "endDate": "2026-04-05T20:00:00-07:00",
+    "location": "San Francisco, CA",
+    "description": "Monthly meetup for metaverse developers. Demos, lightning talks, and networking.",
+    "category": "meetup",
+    "url": ""
+  },
+  {
+    "id": 5,
+    "title": "MVMF Plugin Development Deep Dive",
+    "date": "2026-04-12T10:00:00-07:00",
+    "endDate": "2026-04-12T12:00:00-07:00",
+    "location": "Virtual — RP1 Browser",
+    "description": "Advanced session on building MVMF plugins: services, sources, models, and the factory pattern.",
+    "category": "workshop",
+    "url": ""
+  },
+  {
+    "id": 6,
+    "title": "Metaverse Standards Forum Plenary",
+    "date": "2026-04-20T09:00:00-07:00",
+    "endDate": "2026-04-20T17:00:00-07:00",
+    "location": "Virtual",
+    "description": "Quarterly plenary session of the Metaverse Standards Forum. Open to all members.",
+    "category": "conference",
+    "url": "https://metaverse-standards.org"
+  }
+]

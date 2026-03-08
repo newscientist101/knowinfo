@@ -1,0 +1,269 @@
+/* ── Info Kiosk — Events Calendar Display ── */
+
+:root {
+    --kiosk-bg:        #0a0e1a;
+    --kiosk-surface:   #141928;
+    --kiosk-border:    #1e2640;
+    --kiosk-accent:    #4f8aff;
+    --kiosk-accent-2:  #7c5cfc;
+    --kiosk-text:      #e8eaf0;
+    --kiosk-text-dim:  #8892a8;
+    --kiosk-success:   #34d399;
+    --kiosk-warning:   #fbbf24;
+    --kiosk-radius:    12px;
+    --kiosk-font:      'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    font-family: var(--kiosk-font);
+    background: var(--kiosk-bg);
+    color: var(--kiosk-text);
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* ── Header ── */
+
+.kiosk-header {
+    text-align: center;
+    padding: 2rem 1.5rem 1rem;
+    background: linear-gradient(180deg, rgba(79,138,255,0.08) 0%, transparent 100%);
+}
+
+.kiosk-header h1 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    background: linear-gradient(135deg, var(--kiosk-accent), var(--kiosk-accent-2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.kiosk-header .subtitle {
+    font-size: 0.85rem;
+    color: var(--kiosk-text-dim);
+    margin-top: 0.25rem;
+}
+
+/* ── Status Bar ── */
+
+.kiosk-status {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    font-size: 0.75rem;
+    color: var(--kiosk-text-dim);
+}
+
+.kiosk-status .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #555;
+    transition: background 0.3s;
+}
+
+.kiosk-status .dot.connected    { background: var(--kiosk-success); box-shadow: 0 0 6px var(--kiosk-success); }
+.kiosk-status .dot.connecting   { background: var(--kiosk-warning); animation: pulse 1s infinite; }
+.kiosk-status .dot.disconnected { background: #ef4444; }
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+}
+
+/* ── Filter Tabs ── */
+
+.kiosk-filters {
+    display: flex;
+    gap: 0.5rem;
+    padding: 0 1.5rem 1rem;
+    overflow-x: auto;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.kiosk-filters button {
+    background: var(--kiosk-surface);
+    border: 1px solid var(--kiosk-border);
+    color: var(--kiosk-text-dim);
+    padding: 0.35rem 0.85rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-family: var(--kiosk-font);
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+}
+
+.kiosk-filters button:hover {
+    border-color: var(--kiosk-accent);
+    color: var(--kiosk-text);
+}
+
+.kiosk-filters button.active {
+    background: var(--kiosk-accent);
+    border-color: var(--kiosk-accent);
+    color: #fff;
+}
+
+/* ── Events Grid ── */
+
+.kiosk-events {
+    padding: 0 1.5rem 2rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1rem;
+}
+
+/* ── Event Card ── */
+
+.event-card {
+    background: var(--kiosk-surface);
+    border: 1px solid var(--kiosk-border);
+    border-radius: var(--kiosk-radius);
+    padding: 1.25rem;
+    transition: all 0.25s;
+    position: relative;
+    overflow: hidden;
+}
+
+.event-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--kiosk-accent), var(--kiosk-accent-2));
+    opacity: 0;
+    transition: opacity 0.25s;
+}
+
+.event-card:hover {
+    border-color: rgba(79,138,255,0.3);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+}
+
+.event-card:hover::before { opacity: 1; }
+
+.event-card .category-badge {
+    display: inline-block;
+    font-size: 0.65rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    margin-bottom: 0.6rem;
+}
+
+.badge-hackathon   { background: rgba(239,68,68,0.15);  color: #f87171; }
+.badge-workshop    { background: rgba(79,138,255,0.15);  color: #93bbff; }
+.badge-meetup      { background: rgba(52,211,153,0.15);  color: #34d399; }
+.badge-conference  { background: rgba(124,92,252,0.15);  color: #a78bfa; }
+
+.event-card h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    line-height: 1.3;
+}
+
+.event-card .event-meta {
+    font-size: 0.78rem;
+    color: var(--kiosk-text-dim);
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    margin-bottom: 0.6rem;
+}
+
+.event-card .event-meta span::before {
+    margin-right: 0.35rem;
+    opacity: 0.6;
+}
+
+.event-card .event-meta .date::before    { content: '📅'; }
+.event-card .event-meta .location::before { content: '📍'; }
+
+.event-card .description {
+    font-size: 0.8rem;
+    color: var(--kiosk-text-dim);
+    line-height: 1.5;
+}
+
+.event-card .event-link {
+    display: inline-block;
+    margin-top: 0.75rem;
+    font-size: 0.75rem;
+    color: var(--kiosk-accent);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.event-card .event-link:hover {
+    text-decoration: underline;
+}
+
+/* ── Loading / Error States ── */
+
+.kiosk-loading {
+    text-align: center;
+    padding: 3rem;
+    color: var(--kiosk-text-dim);
+}
+
+.kiosk-loading .spinner {
+    width: 32px;
+    height: 32px;
+    border: 3px solid var(--kiosk-border);
+    border-top-color: var(--kiosk-accent);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    margin: 0 auto 1rem;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.kiosk-error {
+    text-align: center;
+    padding: 2rem;
+    color: #f87171;
+    font-size: 0.85rem;
+}
+
+/* ── Empty State ── */
+
+.kiosk-empty {
+    text-align: center;
+    padding: 3rem;
+    color: var(--kiosk-text-dim);
+    font-size: 0.9rem;
+}
+
+/* ── Footer ── */
+
+.kiosk-footer {
+    text-align: center;
+    padding: 1rem;
+    font-size: 0.7rem;
+    color: var(--kiosk-text-dim);
+    border-top: 1px solid var(--kiosk-border);
+    margin-top: 1rem;
+}
+
+/* ── Responsive ── */
+
+@media (max-width: 640px) {
+    .kiosk-events {
+        grid-template-columns: 1fr;
+    }
+    .kiosk-header h1 {
+        font-size: 1.35rem;
+    }
+}

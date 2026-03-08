@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Info Kiosk — Events Calendar</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/kiosk.css">
+</head>
+<body>
+
+    <header class="kiosk-header">
+        <h1>📅 Events Calendar</h1>
+        <div class="subtitle">Open Metaverse Community</div>
+    </header>
+
+    <div class="kiosk-status">
+        <span class="dot" id="statusDot"></span>
+        <span id="statusText">Connecting...</span>
+    </div>
+
+    <div class="kiosk-filters" id="filters">
+        <button class="active" data-category="">All Events</button>
+        <button data-category="hackathon">Hackathons</button>
+        <button data-category="workshop">Workshops</button>
+        <button data-category="meetup">Meetups</button>
+        <button data-category="conference">Conferences</button>
+    </div>
+
+    <div id="content">
+        <div class="kiosk-loading">
+            <div class="spinner"></div>
+            <div>Loading events...</div>
+        </div>
+    </div>
+
+    <footer class="kiosk-footer">
+        Powered by MVMF — Metaversal Model Foundation &bull; Info Kiosk Plugin v1.0.0
+    </footer>
+
+    <!-- MVMF Core -->
+    <script src="js/vendor/mv/MVMF.js"></script>
+
+    <!-- Info Kiosk Plugin -->
+    <script src="js/MVInfoKiosk.js"></script>
+
+    <!-- Kiosk Application -->
+    <script src="js/kiosk-app.js"></script>
+
+</body>
+</html>
