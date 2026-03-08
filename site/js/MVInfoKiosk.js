@@ -11,6 +11,9 @@ MV.InfoKiosk = MV.Library(
 
 // ── ACTION helpers ───────────────────────────────────────────────
 
+
+// Unique object index counter (must be > 0 for OBJECTBANK.Insert)
+MV.InfoKiosk._twNextObjectIx = 1;
 MV.InfoKiosk.ACTION = class extends MV.MVMF.CLIENT.ACTION
 {
     constructor(sAction, pDefaults)
@@ -199,7 +202,7 @@ MV.InfoKiosk.Model.Session_Null.MODEL.factory = function()
 
 MV.InfoKiosk.Model.Session_Null.IREFERENCE = class extends MV.MVMF.MEM.MODEL.IREFERENCE
 {
-    constructor(sID, asArgs) { super(sID); }
+    constructor(sID, asArgs) { super(sID, 1, 0); }
     Key()      { return '0'; }
     Create(pS) { return new MV.InfoKiosk.Model.Session_Null.MODEL(this, pS); }
 };
@@ -208,7 +211,7 @@ MV.InfoKiosk.Source.Session_Null = {};
 
 MV.InfoKiosk.Source.Session_Null.SOURCE = class extends MV.MVMF.MEM.SOURCE
 {
-    constructor(pR, pC) { super(pR, pC, new MV.MVMF.MEM.SOURCE.OBJECTHEAD()); }
+    constructor(pR, pC) { super(pR, pC, new MV.MVMF.MEM.SOURCE.OBJECTHEAD(0, 0, 0, 0, 0)); }
 
     Attach()
     {
@@ -272,7 +275,7 @@ MV.InfoKiosk.Model.EventCalendar.IREFERENCE = class extends MV.MVMF.MEM.MODEL.IR
 {
     constructor(sID, asArgs)
     {
-        super(sID);
+        super(sID, MV.InfoKiosk._twNextObjectIx++, 0);
         this.sCategory = '';
         if (asArgs) {
             for (let i = 0; i < asArgs.length; i++) {
@@ -298,7 +301,7 @@ MV.InfoKiosk.Source.EventCalendar.SOURCE = class extends MV.MVMF.MEM.SOURCE
 
     constructor(pR, pC)
     {
-        super(pR, pC, new MV.MVMF.MEM.SOURCE.OBJECTHEAD());
+        super(pR, pC, new MV.MVMF.MEM.SOURCE.OBJECTHEAD(0, 0, 0, 0, 0));
     }
 
     // Override Request to inject source ref into client
@@ -417,7 +420,7 @@ MV.InfoKiosk.Model.EventDetail.IREFERENCE = class extends MV.MVMF.MEM.MODEL.IREF
 {
     constructor(sID, asArgs)
     {
-        super(sID);
+        super(sID, MV.InfoKiosk._twNextObjectIx++, 0);
         this.nEventId = 0;
         if (asArgs) {
             for (let i = 0; i < asArgs.length; i++) {
@@ -439,7 +442,7 @@ MV.InfoKiosk.Source.EventDetail = {};
 
 MV.InfoKiosk.Source.EventDetail.SOURCE = class extends MV.MVMF.MEM.SOURCE
 {
-    constructor(pR, pC) { super(pR, pC, new MV.MVMF.MEM.SOURCE.OBJECTHEAD()); }
+    constructor(pR, pC) { super(pR, pC, new MV.MVMF.MEM.SOURCE.OBJECTHEAD(0, 0, 0, 0, 0)); }
 
     Request(sAction)
     {
